@@ -1,0 +1,17 @@
+@include('items.header')
+@include('items.navbar')
+@include('items.slider')
+@include('items.services')
+@include('items.factinfo')
+@include('items.aboutus')
+@include('items.ourteam')
+@include('items.pricing')
+@include('items.portofolio')
+@include('items.news')
+@include('items.clients')
+<section id="contact" class="contact">
+	@include('items.contact')
+	@include('items.footer')
+</section>
+@include('items.loader')
+@include('items.closers')
