@@ -1,5 +1,9 @@
 $(function() {
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $("input,textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
@@ -18,13 +22,14 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "/kirim",
                 type: "POST",
                 data: {
-                    name: name,
-                    phone: phone,
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    nama: name,
+                    nomer_tlep: phone,
                     email: email,
-                    message: message
+                    pesan: message
                 },
                 cache: false,
                 success: function() {

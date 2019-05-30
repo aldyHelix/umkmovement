@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,12 +12,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+//Route::get('/', function () {
+//    return view('index');
+//});
 
+Route::get('/','IndexController@index');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('dashboard','DashboardController');
-Route::resource('jamkerja', 'JamContoller');
+
+Route::post('/kirim','IndexController@kirimPesan');

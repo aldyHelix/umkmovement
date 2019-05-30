@@ -15,6 +15,13 @@ class CreatePortofoliosTable extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama_portofolio');
+            $table->text('deskripsi_portofolio');
+            $table->date('tgl_selesai');
+            $table->string('foto_portofolio');
+            $table->string('foto_dimension');
+            $table->string('foto_path');
+            $table->boolean('is_done');
             $table->timestamps();
         });
     }

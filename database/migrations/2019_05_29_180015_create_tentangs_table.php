@@ -15,6 +15,8 @@ class CreateTentangsTable extends Migration
     {
         Schema::create('tentangs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('headline');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

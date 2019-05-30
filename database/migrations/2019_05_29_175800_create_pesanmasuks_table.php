@@ -15,6 +15,11 @@ class CreatePesanmasuksTable extends Migration
     {
         Schema::create('pesanmasuks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama')->nullable();
+            $table->string('email')->nullable();
+            $table->string('nomer_tlep')->nullable();
+            $table->text('pesan')->nullable();
+            $table->timestamp('waktu_masuk');
             $table->timestamps();
         });
     }
