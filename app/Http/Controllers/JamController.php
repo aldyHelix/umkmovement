@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Jamkerja;
-
-class DashboardController extends Controller
+class JamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $jamker = Jamkerja::all();
-        return view('admin/dashboard', compact('jamker'));
+
     }
 
     /**
