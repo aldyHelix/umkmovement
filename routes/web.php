@@ -20,6 +20,9 @@ Route::get('/','IndexController@index');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('dashboard','DashboardController');
+Route::resource('/dashboard/pengaturan', 'PengaturanController')->middleware('auth');
+Route::resource('/dashboard/berita','BeritaController')->middleware('auth');
+Route::resource('/dashboard/portofolio','PortofolioController')->middleware('auth');
+Route::resource('dashboard','DashboardController')->middleware('auth');
 
 Route::post('/kirim','IndexController@kirimPesan');

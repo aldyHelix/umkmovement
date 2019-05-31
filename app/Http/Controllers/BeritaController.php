@@ -4,25 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Jamkerja;
-use App\Pesanmasuk;
-
-class DashboardController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
-        $pesan = Pesanmasuk::orderBy('waktu_masuk', 'desc')->paginate(10);
-        $jamker = Jamkerja::all();
-        return view('admin/dashboard', compact('jamker', 'pesan'));
+        return view('admin/berita');
     }
 
     /**

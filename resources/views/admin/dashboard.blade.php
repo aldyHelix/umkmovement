@@ -128,40 +128,50 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                    <ul class="todo-list">
-                        @foreach($jamker as $jamkerja)
-                        <li>
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <div class="input-group">
-                                        <input type="checkbox">
-                                        <span class="text">{{$jamkerja->hari}}</span>
+                    <div class="bootstrap-timepicker">
+                        <div class="form-group">
+                            <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+                            <ul class="todo-list">
+                                @foreach($jamker as $jamkerja)
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <div class="input-group">
+                                                <input type="checkbox">
+                                                <span class="text">{{$jamkerja->hari}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control timepicker" placeholder="Mulai">
+
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control timepicker" placeholder="Selesai">
+
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Mulai</span>
-                                        <input type="text" class="form-control" id="mulai">
-                                    </div>
-                                </div>
-                                <div class="col-xs-4">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Selesai</span>
-                                        <input type="text" class="form-control" id="selesai">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                <!-- /.box-body -->
-                <div class="box-footer clearfix no-border">
-                    <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Simpan</button>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix no-border">
+                            <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Simpan</button>
+                        </div>
+                    </div>
+                    <!-- /.box -->
                 </div>
             </div>
-            <!-- /.box -->
         </div>
     </div>
     <!-- /.row -->
