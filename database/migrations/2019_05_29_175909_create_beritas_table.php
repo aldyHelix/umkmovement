@@ -18,6 +18,9 @@ class CreateBeritasTable extends Migration
             $table->string('nama_berita');
             $table->text('isi_berita')->nullable();
             $table->date('tgl_berita');
+            $table->string('foto_filename')->nullable();
+            $table->string('foto_dimension');
+            $table->string('foto_path');
             $table->timestamps();
         });
     }

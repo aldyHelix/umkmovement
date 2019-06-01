@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Jamkerja;
 use App\Pesanmasuk;
 
 class DashboardController extends Controller
@@ -21,8 +20,7 @@ class DashboardController extends Controller
     public function index()
     {
         $pesan = Pesanmasuk::orderBy('waktu_masuk', 'desc')->paginate(10);
-        $jamker = Jamkerja::all();
-        return view('admin/dashboard', compact('jamker', 'pesan'));
+        return view('admin/dashboard', compact('pesan'));
     }
 
     /**

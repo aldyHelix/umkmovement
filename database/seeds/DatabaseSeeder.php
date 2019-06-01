@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'umkmovement@gmail.com',
             'password' => Hash::make('adminumkm456//'),
         ]);
+        DB::table('tentangs')->insert([
+            'headline' => 'Kami Bekerja!',
+            'deskripsi' => 'Kami siap bekerja demi anda!'
+        ]);
 
         DB::table('jamkerjas')->insert([
             'hari' => 'Minggu',

@@ -72,7 +72,7 @@
     <!-- row -->
     <div class="row">
         <!-- /.col -->
-        <div class="col-md-7">
+        <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Inbox</h3>
@@ -114,64 +114,6 @@
                 </div>
             </div>
             <!-- /. box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-lg-5 connectedSortable">
-            <!-- col -->
-            <!-- TO DO List -->
-            <div class="box box-primary">
-                <div class="box-header">
-                    <i class="ion ion-clipboard"></i>
-
-                    <h3 class="box-title">Jam Kerja</h3>
-
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="bootstrap-timepicker">
-                        <div class="form-group">
-                            <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-                            <ul class="todo-list">
-                                @foreach($jamker as $jamkerja)
-                                <li>
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <div class="input-group">
-                                                <input type="checkbox">
-                                                <span class="text">{{$jamkerja->hari}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control timepicker" placeholder="Mulai">
-
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control timepicker" placeholder="Selesai">
-
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-clock-o"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix no-border">
-                            <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Simpan</button>
-                        </div>
-                    </div>
-                    <!-- /.box -->
-                </div>
-            </div>
         </div>
     </div>
     <!-- /.row -->
