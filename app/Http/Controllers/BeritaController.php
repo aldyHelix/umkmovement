@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Berita;
+use Carbon\Carbon;
+use Image;
+use File;
 
 class BeritaController extends Controller
 {
+    public $path;
+    public $dimensions;
+    public function __construct()
+    {
+        //DEFINISIKAN PATH
+        $this->path = public_path('imagesupload');
+        //DEFINISIKAN DIMENSI
+        $this->dimensions = ['245', '300', '500'];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +47,55 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+
+        //JIKA FOLDERNYA BELUM ADA
+        if (!File::isDirectory($this->path)) {
+            //MAKA FOLDER TERSEBUT AKAN DIBUAT
+            File::makeDirectory($this->path);
+        }
+
+        //MENGAMBIL FILE IMAGE DARI FORM
+        $file = $request->file('image');
+        //MEMBUAT NAME FILE DARI GABUNGAN TIMESTAMP DAN UNIQID()
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //UPLOAD ORIGINAN FILE (BELUM DIUBAH DIMENSINYA)
+        Image::make($file)->save($this->path . '/' . $fileName);
+
+        //LOOPING ARRAY DIMENSI YANG DI-INGINKAN
+        //YANG TELAH DIDEFINISIKAN PADA CONSTRUCTOR
+        foreach ($this->dimensions as $row) {
+            //MEMBUAT CANVAS IMAGE SEBESAR DIMENSI YANG ADA DI DALAM ARRAY 
+            $canvas = Image::canvas($row, $row);
+            //RESIZE IMAGE SESUAI DIMENSI YANG ADA DIDALAM ARRAY 
+            //DENGAN MEMPERTAHANKAN RATIO
+            $resizeImage  = Image::make($file)->resize($row, $row, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            //CEK JIKA FOLDERNYA BELUM ADA
+            if (!File::isDirectory($this->path . '/' . $row)) {
+                //MAKA BUAT FOLDER DENGAN NAMA DIMENSI
+                File::makeDirectory($this->path . '/' . $row);
+            }
+
+            //MEMASUKAN IMAGE YANG TELAH DIRESIZE KE DALAM CANVAS
+            $canvas->insert($resizeImage, 'center');
+            //SIMPAN IMAGE KE DALAM MASING-MASING FOLDER (DIMENSI)
+            $canvas->save($this->path . '/' . $row . '/' . $fileName);
+        }
+
+        //SIMPAN DATA IMAGE YANG TELAH DI-UPLOAD
+        Partner::create([
+            'name' => $request->name,
+            'filename' => $fileName,
+            'dimension' => implode('|', $this->dimensions),
+            'path' => $this->path
+        ]);
+        return redirect()->back()->with(['patnersuccess' => 'Gambar Telah Di-upload']);
     }
 
     /**
@@ -66,9 +127,57 @@ class BeritaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+
+        //JIKA FOLDERNYA BELUM ADA
+        if (!File::isDirectory($this->path)) {
+            //MAKA FOLDER TERSEBUT AKAN DIBUAT
+            File::makeDirectory($this->path);
+        }
+
+        //MENGAMBIL FILE IMAGE DARI FORM
+        $file = $request->file('image');
+        //MEMBUAT NAME FILE DARI GABUNGAN TIMESTAMP DAN UNIQID()
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //UPLOAD ORIGINAN FILE (BELUM DIUBAH DIMENSINYA)
+        Image::make($file)->save($this->path . '/' . $fileName);
+
+        //LOOPING ARRAY DIMENSI YANG DI-INGINKAN
+        //YANG TELAH DIDEFINISIKAN PADA CONSTRUCTOR
+        foreach ($this->dimensions as $row) {
+            //MEMBUAT CANVAS IMAGE SEBESAR DIMENSI YANG ADA DI DALAM ARRAY 
+            $canvas = Image::canvas($row, $row);
+            //RESIZE IMAGE SESUAI DIMENSI YANG ADA DIDALAM ARRAY 
+            //DENGAN MEMPERTAHANKAN RATIO
+            $resizeImage  = Image::make($file)->resize($row, $row, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            //CEK JIKA FOLDERNYA BELUM ADA
+            if (!File::isDirectory($this->path . '/' . $row)) {
+                //MAKA BUAT FOLDER DENGAN NAMA DIMENSI
+                File::makeDirectory($this->path . '/' . $row);
+            }
+
+            //MEMASUKAN IMAGE YANG TELAH DIRESIZE KE DALAM CANVAS
+            $canvas->insert($resizeImage, 'center');
+            //SIMPAN IMAGE KE DALAM MASING-MASING FOLDER (DIMENSI)
+            $canvas->save($this->path . '/' . $row . '/' . $fileName);
+        }
+
+        //SIMPAN DATA IMAGE YANG TELAH DI-UPLOAD
+        Partner::create([
+            'name' => $request->name,
+            'filename' => $fileName,
+            'dimension' => implode('|', $this->dimensions),
+            'path' => $this->path
+        ]);
+        return redirect()->back()->with(['patnersuccess' => 'Gambar Telah Di-upload']);
     }
 
     /**
@@ -77,7 +186,7 @@ class BeritaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         //
     }

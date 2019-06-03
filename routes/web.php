@@ -21,8 +21,18 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard/pengaturan', 'PengaturanController@index')->middleware('auth');
-Route::resource('/dashboard/berita','BeritaController')->middleware('auth');
-Route::resource('/dashboard/portofolio','PortofolioController')->middleware('auth');
+
+Route::get('/dashboard/berita','BeritaController@index')->middleware('auth');
+Route::post('/dashboard/berita/store', 'BeritaController@store')->name('berita.store');
+Route::put('/dashboard/berita/update', 'BeritaController@update')->name('berita.update');
+Route::delete('/dashboard/berita/delete', 'BeritaController@destroy')->name('berita.destroy');
+
+    Route::get('/dashboard/portofolio','PortofolioController@index')->middleware('auth');
+    Route::post('/dashboard/portofolio/store', 'PortofolioController@store')->name('portofolio.store');
+    Route::post('/dashboard/portofolio/update', 'PortofolioController@update')->name('portofolio.update');
+    Route::delete('/dashboard/portofolio/delete', 'PortofolioController@destroy')->name('portofolio.destroy');
+
+
 Route::resource('dashboard','DashboardController')->middleware('auth');
 
 Route::post('/kirim','IndexController@kirimPesan');

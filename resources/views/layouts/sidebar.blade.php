@@ -18,6 +18,7 @@
             <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li><a href="{{url('dashboard/portofolio')}}"><i class="fa fa-files-o"></i> <span>Portofolio</span></a></li>
             <li><a href="{{url('dashboard/berita')}}"><i class="fa fa-newspaper-o"></i> <span>Berita</span></a></li>
+            <li><a href="{{url('dashboard/service')}}"><i class="fa fa-handshake-o"></i> <span>Service</span></a></li>
             <li><a href="{{url('dashboard/pengaturan')}}"><i class="fa fa-gear"></i> <span>Pengaturan Website</span></a></li>
         </ul>
     </section>

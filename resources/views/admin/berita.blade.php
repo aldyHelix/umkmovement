@@ -25,7 +25,7 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Nama Berita</th>
+                                <th>Judul Berita</th>
                                 <th>Isi Berita</th>
                                 <th>Tgl Berita</th>
                                 <th>Foto Berita</th>
@@ -64,18 +64,31 @@
                     <h4 class="modal-title">Tambah Berita</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="{{route('berita.store')}}">
+                        @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Nama Partner</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Headline">
+                                <label class="col-sm-4 control-label">Judul</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">isi Berita</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Tanggal Berita</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <label for="exampleInputFile">Upload Gambar</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile" name="image">
                                     <p class="help-block">Maksimal ukuran file 1 Mb, maksimal ukuran 250 pixel x 250 pixel</p>
                                 </div>
 
@@ -84,7 +97,7 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                            <button class="btn btn-primary pull-right">Simpan</button>
                         </div>
                         <!-- /.box-footer -->
                     </form>
@@ -104,18 +117,31 @@
                     <h4 class="modal-title">Edit Berita </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="{{route('berita.update')}}">
+                        @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Nama Partner</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Headline">
+                                <label class="col-sm-4 control-label">Judul</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">isi Berita</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Tanggal Berita</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <label for="exampleInputFile">Upload Gambar</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile" name="image">
                                     <p class="help-block">Maksimal ukuran file 1 Mb, maksimal ukuran 250 pixel x 250 pixel</p>
                                 </div>
 
@@ -124,7 +150,7 @@
                         <!-- /.box-body -->
                         <div class="box-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                            <button class="btn btn-primary pull-right">Simpan</button>
                         </div>
                         <!-- /.box-footer -->
                     </form>
@@ -143,13 +169,18 @@
                         <span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Hapus Berita</h4>
                 </div>
-                <div class="modal-body">
-                    <p>Anda Yakin Ingin Menghapus Data ini ?&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
-                    <button type="button" class="btn btn-danger">Hapus</button>
-                </div>
+                <form action="{{route('berita.destroy')}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <p>Apa kamu yakin akan menghapus Data ini?&hellip;</p>
+                        <input type="hidden" name="id" id="cat_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
+                        <button class="btn btn-danger">Hapus</button>
+                    </div>
+                </form>
             </div>
             <!-- /.modal-content -->
         </div>
