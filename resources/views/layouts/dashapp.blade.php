@@ -31,6 +31,8 @@
 
     <link rel="stylesheet" href="{{asset('adminlte/plugins/timepicker/bootstrap-timepicker.min.css')}}">
 
+    <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,6 +97,7 @@
     <script src="{{asset('adminlte/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
     <script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     @section('js')
 
     @show
@@ -102,8 +105,13 @@
         $(function() {
             $('.timepicker').timepicker({
                 showInputs: false
-            })
-        })
+            });
+        });
+        //Date picker
+        $('#datepicker').datepicker({
+            format: '{{config("app.date_format_js")}}',
+            autoclose: true
+        });
     </script>
     <script>
         $('#modal-kontak-edit').on('show.bs.modal', function(event) {
@@ -130,6 +138,29 @@
             var cat_id = button.data('catid')
             var modal = $(this)
             modal.find('.modal-body #cat_id').val(cat_id);
+        })
+
+        $('#modal-portofolio-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var nama_portofolio = button.data('nama')
+            var deskripsi_portofolio = button.data('deskripsi')
+            var tgl_selesai = button.data('tgl')
+            var status = button.data('status')
+            var id = button.data('id')
+            var modal = $(this)
+
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #nama').val(nama_portofolio);
+            modal.find('.modal-body #deskripsi').val(deskripsi_portofolio);
+            modal.find('.modal-body #datepicker').val(tgl_selesai);
+            modal.find('.modal-body #status').val(status);
+        })
+
+        $('#modal-portofolio-hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
         })
     </script>
 </body>

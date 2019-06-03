@@ -228,4 +228,5 @@ return [
 
     ],
 
+    'date_format_js' => 'yyyy-m-d',
 ];
