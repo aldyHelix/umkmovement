@@ -17,10 +17,10 @@ class CreateBeritasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama_berita');
             $table->text('isi_berita')->nullable();
-            $table->date('tgl_berita');
+            $table->date('tgl_berita')->nullable();
             $table->string('foto_filename')->nullable();
-            $table->string('foto_dimension');
-            $table->string('foto_path');
+            $table->string('foto_dimension')->nullable();
+            $table->string('foto_path')->nullable();
             $table->timestamps();
         });
     }

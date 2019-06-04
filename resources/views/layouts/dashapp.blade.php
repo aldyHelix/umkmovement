@@ -112,6 +112,7 @@
             format: '{{config("app.date_format_js")}}',
             autoclose: true
         });
+
     </script>
     <script>
         $('#modal-kontak-edit').on('show.bs.modal', function(event) {
@@ -157,6 +158,26 @@
         })
 
         $('#modal-portofolio-hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+        $('#modal-berita-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var nama_berita = button.data('nama')
+            var isi_berita = button.data('deskripsi')
+            var tgl_berita = button.data('tgl')
+            var id = button.data('id')
+            var modal = $(this)
+
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #nama').val(nama_berita);
+            modal.find('.modal-body #deskripsi').val(isi_berita);
+            modal.find('.modal-body #datepicker').val(tgl_berita);
+        })
+
+        $('#modal-berita-hapus').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)

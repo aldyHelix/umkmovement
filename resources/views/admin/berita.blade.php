@@ -22,6 +22,13 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    @if (session('success'))
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-info"></i>Perhatian!</h4>
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -33,19 +40,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($berita as $ber)
                             <tr>
-                                <td>Ternyata Nenek Ini Bisa Menghilang!</td>
-                                <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                <td>{{$ber->nama_berita}}</td>
+                                <td>{{$ber->isi_berita}}
                                 </td>
-                                <td>12 jan 2000</td>
-                                <td><img src="{{asset('images/logos/themeforest.jpg')}}" class="img-responsive" alt="..."></td>
+                                <td>{{date('d-m-Y', strtotime($ber->tgl_berita))}}</td>
+                                <td><img src="{{asset('imagesupload/berita/' .$ber->foto_filename)}}" class="img-responsive" alt="..." style="max-height: 100px; max-width:200px; width: expression(this.width > 200 ? 200: true);"></td>
                                 <td>
                                     <div class="btn-group">
-                                        <a data-toggle="modal" data-target="#modal-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a data-toggle="modal" data-target="#modal-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                        <a data-toggle="modal" data-target="#modal-berita-edit" data-id="{{$ber->id}}" data-nama="{{$ber->nama_berita}}" data-deskripsi="{{$ber->isi_berita}}" data-tgl="{{$ber->tgl_berita}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a data-toggle="modal" data-target="#modal-berita-hapus" data-id="{{$ber->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -64,7 +73,8 @@
                     <h4 class="modal-title">Tambah Berita</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="{{route('berita.store')}}">
+                    <form class="form-horizontal" action="{{route('berita.store')}}" method="post" enctype="multipart/form-data">
+                        @method('POST')
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -76,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita"></textarea>
+                                    <textarea class="form-control" placeholder="isi berita" name="isi_berita"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +118,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-edit">
+    <div class="modal fade" id="modal-berita-edit">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -117,25 +127,26 @@
                     <h4 class="modal-title">Edit Berita </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="{{route('berita.update')}}">
+                    <form class="form-horizontal" action="{{route('berita.update')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
+                            <input type="hidden" name="id" id="id" value="">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Judul</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita">
+                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita" id="nama" value="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita"></textarea>
+                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita" id="deskripsi" value=""></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tanggal Berita</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita" value="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -161,7 +172,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal modal-warning fade" id="modal-hapus">
+    <div class="modal modal-warning fade" id="modal-berita-hapus">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -174,7 +185,7 @@
                     @csrf
                     <div class="modal-body">
                         <p>Apa kamu yakin akan menghapus Data ini?&hellip;</p>
-                        <input type="hidden" name="id" id="cat_id" value="">
+                        <input type="hidden" name="id" id="id" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
