@@ -43,7 +43,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{$visitors}}</h3>
 
                     <p>Pengunjung</p>
                 </div>
@@ -91,15 +91,15 @@
                                     <td class="mailbox-date">{{$inbox->nomer_tlep}}</td>
                                     <td class="mailbox-date">{{date('d-m-Y H:i', strtotime($inbox->waktu_masuk))}}</td>
                                     <td>
-                                    <div class="btn-group">
-                                        <div class="col-sm-2">
-                                            <a data-toggle="modal" href="#"  data-target="#modal-pesan-info-{{$inbox->id}}" class="btn btn-info btn-sm"><i class="fa fa-book"></i></a>
+                                        <div class="btn-group">
+                                            <div class="col-sm-2">
+                                                <a data-toggle="modal" href="#" data-target="#modal-pesan-info-{{$inbox->id}}" class="btn btn-info btn-sm"><i class="fa fa-book"></i></a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a data-toggle="modal" href="#" data-target="#modal-pesan-hapus-{{$inbox->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <a data-toggle="modal" href="#" data-target="#modal-pesan-hapus-{{$inbox->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
+                                    </td>
                                 </tr>
                                 @endforeach
 
@@ -155,7 +155,9 @@
                         <div class="box-body">
                             <dl class="dl-horizontal">
                                 <dt>Pesan</dt>
-                                <dd><p>{{$inbox->pesan}}</p></dd>
+                                <dd>
+                                    <p>{{$inbox->pesan}}</p>
+                                </dd>
                             </dl>
                         </div>
                     </div>
@@ -170,7 +172,7 @@
     </div>
     @endforeach
     @foreach($pesan as $inbox)
-        <div class="modal modal-warning fade" id="modal-pesan-hapus-{{$inbox->id}}">
+    <div class="modal modal-warning fade" id="modal-pesan-hapus-{{$inbox->id}}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

@@ -5,7 +5,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="counter-item">
                     <i class="fa fa-users"></i>
-                    <div class="timer" id="item1" data-to="991" data-speed="5000"></div>
+                    <div class="timer" id="item1" data-to="{{$visitors}}" data-speed="5"></div>
                     <h5>Pengunjung</h5>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="counter-item">
                     <i class="fa fa-thumbs-up"></i>
-                    <div class="timer" id="item3" data-to="555" data-speed="1"></div>
+                    <div class="timer" id="item3" data-to="{{$hasilkerja}}" data-speed="1"></div>
                     <h5>Hasil Kerja</h5>
                 </div>
             </div>

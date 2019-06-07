@@ -8,6 +8,7 @@ use App\Pesanmasuk;
 use App\Berita;
 use App\Portofolio;
 use App\Partner;
+use App\Visits;
 
 class DashboardController extends Controller
 {
@@ -25,10 +26,16 @@ class DashboardController extends Controller
         $countberita = Berita::all()->count();
         $hasilkerjaselesai = Portofolio::all()->where('is_done', 1)->count();
         $hasilkerjatotal = Portofolio::all()->count();
-        $hasilkerja = (($hasilkerjaselesai / $hasilkerjatotal)*100);
+        if ($hasilkerjaselesai == 0 || $hasilkerjatotal == 0) {
+            $hasilpembagi = 0;
+        } else {
+            $hasilpembagi = $hasilkerjaselesai / $hasilkerjatotal;
+        }
+        $visitors = Visits::all()->count();
+        $hasilkerja = (($hasilpembagi)*100);
         $countpartner = Partner::all()->count();
         $pesan = Pesanmasuk::orderBy('waktu_masuk', 'desc')->paginate(10);
-        return view('admin/dashboard', compact('pesan','countberita','hasilkerja','countpartner'));
+        return view('admin/dashboard', compact('visitirs','pesan','countberita','hasilkerja','countpartner'));
     }
 
     /**

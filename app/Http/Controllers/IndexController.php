@@ -13,10 +13,30 @@ use App\Service;
 use App\Tentang;
 use App\Visits;
 
+
 class IndexController extends Controller
 {
     public function index()
     {
+        function getUserIpAddr()
+        {
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                //ip from share internet
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                //ip pass from proxy
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            return $ip;
+        }
+        Visits::create([
+            'ip' => getUserIpAddr(),
+            //'country' => $visitor->geoIp->country_name,
+        ]);
+
+        $visitors = Visits::all()->count();
         $kontak = Kontak::all();
         $portofolio = Portofolio::limit(6)
         ->orderBy('created_at', 'desc')
@@ -27,9 +47,10 @@ class IndexController extends Controller
         $partner = Partner::all();
         $tentang = Tentang::first();
         $hasilkerjaselesai = Portofolio::all()->where('is_done', 1)->count();
+        $hasilkerja = Portofolio::all()->count();
         $countinbox = Pesanmasuk::all()->count();
         $service = Service::limit(6)->get();
-        return view('index', compact('kontak','portofolio','berita','partner','tentang','hasilkerjaselesai','countinbox','service'));
+        return view('index', compact('visitors','kontak','portofolio','berita','partner','tentang','hasilkerjaselesai','hasilkerja','countinbox','service'));
     }
     public function create(){
         return index();
