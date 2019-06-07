@@ -113,6 +113,17 @@
             autoclose: true
         });
 
+        $(function() {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
     </script>
     <script>
         $('#modal-kontak-edit').on('show.bs.modal', function(event) {
@@ -178,6 +189,80 @@
         })
 
         $('#modal-berita-hapus').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+        })
+
+        $('#modal-service-edit').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var nama_layanan = button.data('nama_layanan')
+            var tagline = button.data('tagline')
+            var range1 = button.data('range1')
+            var range2 = button.data('range2')
+            var fitur1 = button.data('fitur1')
+            var fitur2 = button.data('fitur2')
+            var fitur3 = button.data('fitur3')
+            var fitur4 = button.data('fitur4')
+            var fitur5 = button.data('fitur5')
+            var persentase = button.data('persentase')
+            var deskripsi = button.data('deskripsi')
+            var id = button.data('id')
+            var modal = $(this)
+
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #nama').val(nama_layanan);
+            modal.find('.modal-body #tagline').val(tagline);
+            modal.find('.modal-body #range1').val(range1);
+            modal.find('.modal-body #range2').val(range2);
+            modal.find('.modal-body #fitur1').val(fitur1);
+            modal.find('.modal-body #fitur2').val(fitur2);
+            modal.find('.modal-body #fitur3').val(fitur3);
+            modal.find('.modal-body #fitur4').val(fitur4);
+            modal.find('.modal-body #fitur5').val(fitur5);
+            modal.find('.modal-body #persentase').val(persentase);
+            modal.find('.modal-body #deskripsi').val(deskripsi);
+
+        })
+
+        $(document).on('ajaxComplete ready', function() {
+            $('.modal-service-info').off('click').on('click', function() {
+                $('#modalMdContent').load($(this).attr('value'));
+                $('#modalMdTitle').html($(this).attr('title'));
+            });
+        });
+
+//        $('#modal-service-info').on('show.bs.modal', function(event) {
+//            var button = $(event.relatedTarget)
+ //           var nama_layanan = button.data('nama_layanan')
+ //           var tagline = button.data('tagline')
+ //           var range1 = button.data('range1')
+ //           var range2 = button.data('range2')
+  //          var fitur1 = button.data('fitur1')
+ //           var fitur2 = button.data('fitur2')
+ //           var fitur3 = button.data('fitur3')
+ //           var fitur4 = button.data('fitur4')
+ //           var fitur5 = button.data('fitur5')
+ //           var persentase = button.data('persentase')
+ //           var deskripsi = button.data('deskripsi')
+ //           var id = button.data('id')
+ //           var modal = $(this)
+//
+//            modal.find('#id').text(id);
+//            modal.find('#nama_layanan').html(nama_layanan);
+//            modal.find('#tagline').val(tagline);
+//           modal.find('#range1').val(range1);
+//           modal.find('#range2').val(range2);
+ //           modal.find('#fitur1').val(fitur1);
+ //           modal.find('#fitur2').val(fitur2);
+ //           modal.find('#fitur3').val(fitur3);
+//            modal.find('#fitur4').val(fitur4);
+ //           modal.find('#fitur5').val(fitur5);
+ //           modal.find('#persentase').val(persentase);
+  //          modal.find('#deskripsi').val(deskripsi);
+ //       })
+        $('#modal-service-hapus').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var modal = $(this)

@@ -27,7 +27,7 @@ class CreateServicesTable extends Migration
             $table->string('fitur_5')->nullable();
             $table->integer('persentase')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->string('logo_name')->nullable()->default('Money');
+            $table->string('logo_name')->nullable()->default('money');
             $table->timestamps();
         });
     }

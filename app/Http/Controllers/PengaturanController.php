@@ -118,7 +118,7 @@ class PengaturanController extends Controller
         $partner = Partner::all();
         $kontak = Kontak::all();
         $jamker = Jamkerja::all();
-        return view('admin/pengaturan', compact('kontak','partner','tentang','jamker'));
+        return view('admin/pengaturan', compact('kontak','partner','tentang','jamker','countberita'));
     }
     public function ubahPassword(Request $request)
     {

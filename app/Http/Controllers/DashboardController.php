@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Pesanmasuk;
+use App\Berita;
+use App\Portofolio;
+use App\Partner;
 
 class DashboardController extends Controller
 {
@@ -19,8 +22,13 @@ class DashboardController extends Controller
     }
     public function index()
     {
+        $countberita = Berita::all()->count();
+        $hasilkerjaselesai = Portofolio::all()->where('is_done', 1)->count();
+        $hasilkerjatotal = Portofolio::all()->count();
+        $hasilkerja = (($hasilkerjaselesai / $hasilkerjatotal)*100);
+        $countpartner = Partner::all()->count();
         $pesan = Pesanmasuk::orderBy('waktu_masuk', 'desc')->paginate(10);
-        return view('admin/dashboard', compact('pesan'));
+        return view('admin/dashboard', compact('pesan','countberita','hasilkerja','countpartner'));
     }
 
     /**

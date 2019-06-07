@@ -78,7 +78,7 @@
                     <h4 class="modal-title">Tambah Portofolio</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="{{route('portofolio.store')}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{{route('portofolio.store')}}" method="post" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <div class="box-body">
