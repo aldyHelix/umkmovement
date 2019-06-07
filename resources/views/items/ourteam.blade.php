@@ -5,7 +5,6 @@
             <div class="col-md-12 col-sm-12">
                 <div class="section-title text-center">
                     <h3>Our Team</h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate</p>
                 </div>
             </div>
         </div>

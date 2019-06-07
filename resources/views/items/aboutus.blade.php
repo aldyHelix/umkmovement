@@ -5,8 +5,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                        <h3>About Us</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h3>Tentang Kami</h3>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -17,9 +16,9 @@
 
                         <div class="col-md-8">
                             <div class="welcome-section text-center">
-                                <h4>Office Philosophy</h4>
+                                <h4>{{$tentang->headline}}</h4>
                                 <div class="border"></div>
-                                <p>Duis aute irure dolor in reprehen derit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem reprehenderit</p>
+                                <p>{{$tentang->deskripsi}}</p>
                             </div>
                         </div>
                     </div><!-- /.row -->
@@ -39,60 +38,17 @@
             <div class="col-md-6">
                 <div class="skill-shortcode">
                     <!-- Progress Bar -->
+                    @foreach($service as $ser)
                     <div class="skill">
-                        <p style="font-size: 15px">Branding</p>
+                        <p style="font-size: 15px">{{$ser->nama_service}}</p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" data-percentage="60" style="background: yellow;">
-                                <span class="progress-bar-span">60%</span>
-                                <span class="sr-only">60% Complete</span>
+                            <div class="progress-bar" role="progressbar" data-percentage="{{$ser->persentase}}" style="background: yellow;">
+                                <span class="progress-bar-span">{{$ser->persentase}}%</span>
+                                <span class="sr-only">{{$ser->persentase}}% Complete</span>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Progress Bar -->
-                    <div class="skill">
-                        <p style="font-size: 15px">Photoshoot Produk</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" data-percentage="95" style="background: yellow;">
-                                <span class="progress-bar-span">95%</span>
-                                <span class="sr-only">95% Complete</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress Bar -->
-                    <div class="skill">
-                        <p style="font-size: 15px">Financial Management dan targeting</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" data-percentage="80" style="background: yellow;">
-                                <span class="progress-bar-span">80%</span>
-                                <span class="sr-only">80% Complete</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress Bar -->
-                    <div class="skill">
-                        <p style="font-size: 15px">Online Marketing</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" data-percentage="100" style="background: yellow;">
-                                <span class="progress-bar-span">100%</span>
-                                <span class="sr-only">100% Complete</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Progress Bar -->
-                    <div class="skill">
-                        <p style="font-size: 15px">Marketing Communication</p>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" data-percentage="70" style="background: yellow;">
-                                <span class="progress-bar-span">70%</span>
-                                <span class="sr-only">70% Complete</span>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
 

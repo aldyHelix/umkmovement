@@ -12,21 +12,21 @@
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="counter-item">
                     <i class="fa fa-check"></i>
-                    <div class="timer" id="item2" data-to="7394" data-speed="5000"></div>
+                    <div class="timer" id="item2" data-to="{{$hasilkerjaselesai}}" data-speed="1"></div>
                     <h5>Terselesaikan</h5>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="counter-item">
                     <i class="fa fa-thumbs-up"></i>
-                    <div class="timer" id="item3" data-to="18745" data-speed="5000"></div>
+                    <div class="timer" id="item3" data-to="555" data-speed="1"></div>
                     <h5>Hasil Kerja</h5>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="counter-item">
                     <i class="fa fa-male"></i>
-                    <div class="timer" id="item4" data-to="8423" data-speed="5000"></div>
+                    <div class="timer" id="item4" data-to="{{$countinbox}}" data-speed="1"></div>
                     <h5>Pelanggan Terpercaya</h5>
                 </div>
             </div>

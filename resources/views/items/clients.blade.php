@@ -1,57 +1,21 @@
+
 <!-- Clients Aside -->
 <section id="partner">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section-title text-center">
-                    <h3>Our Honorable Partner</h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                    <h3>Partner Kami</h3>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="clients">
-
+            @foreach($partner as $part)
                 <div class="col-md-12">
-                    <img src="{{asset('images/logos/themeforest.jpg')}}" class="img-responsive" alt="...">
+                    <img src="{{asset('imagesupload/' .$part->filename)}}" class="img-responsive" alt="..." style="max-height:75px; max-width:200px; width: expression(this.width > 200 ? 200: true);">
                 </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/creative-market.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/designmodo.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/creative-market.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/microlancer.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/themeforest.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/microlancer.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/designmodo.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/creative-market.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
-                <div class="col-md-12">
-                    <img src="{{asset('images/logos/designmodo.jpg')}}" class="img-responsive" alt="...">
-                </div>
-
+            @endforeach
             </div>
         </div>
     </div>

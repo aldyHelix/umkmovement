@@ -14,66 +14,17 @@
 
                     <!-- Start Portfolio items max 6 items -->
                     <ul id="portfolio-list">
+                    @foreach($portofolio as $p)
                         <li>
                             <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img1.jpg')}}" class="img-responsive" alt="" />
+                                <img src="{{asset('imagesupload/portofolio/300/' .$p->foto_portofolio)}}" alt="..." style="max-height: 300px; max-width:300px; width: expression(this.width > 300 ? 300: true);" />
                                 <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
+                                    <h4>{{$p->nama_portofolio}}</h4>
+                                    <a href="#portfolio-modal-{{$p->id}}" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img2.jpg')}}" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img3.jpg')}}" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img4.jpg')}}" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img5.jpg')}}" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="portfolio-item">
-                                <img src="{{asset('images/portfolio/img6.jpg')}}" class="img-responsive" alt="" />
-                                <div class="portfolio-caption">
-                                    <h4>Portfolio Title</h4>
-                                    <a href="#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                    <a href="#" class="link-2"><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                        </li>
+                    @endforeach    
                     </ul>
                     <!-- End Portfolio items -->
                 </div>
@@ -83,7 +34,8 @@
     <!-- End Portfolio Section -->
 
     <!-- Start Portfolio Modal Section -->
-    <div class="section-modal modal fade" id="portfolio-modal" tabindex="-1" role="dialog" aria-hidden="true">
+@foreach($portofolio as $p)
+    <div class="section-modal modal fade" id="portfolio-modal-{{$p->id}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -91,25 +43,23 @@
                     </div>
                 </div>
             </div>
-
             <div class="container">
                 <div class="row">
                     <div class="section-title text-center">
-                        <h3>Portfolio Details</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h3>{{$p->nama_portofolio}}</h3>
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-md-6">
-                        <img src="{{asset('images/portfolio/img1.jpg')}}" class="img-responsive" alt="..">
+                        <img src="{{asset('imagesupload/portofolio/' .$p->foto_portofolio)}}" class="img-responsive" alt="...">
                     </div>
                     <div class="col-md-6">
-                        <img src="{{asset('images/portfolio/img1.jpg')}}" class="img-responsive" alt="..">
+                        <p>{{$p->deskripsi_portofolio}}</p>
+                        <p>{{date('d-m-Y', strtotime($p->tgl_selesai))}}</p>
                     </div>
-
-                </div><!-- /.row -->
+                </div><!-- /.row -->  
             </div>
         </div>
     </div>
     <!-- End Portfolio Modal Section -->
+    @endforeach

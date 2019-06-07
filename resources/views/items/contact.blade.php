@@ -51,30 +51,22 @@
                         <div id="success"></div>
                         <button type="submit" class="btn btn-primary">Kirim Pesan</button>
                     </div>
+                    <div class="col-lg-12 text-center">
+                        <div class="footer-contact-info col-md-6">
+                            <h4>Kontak Kami</h4>
+                            <ul>
+                                @foreach($kontak as $k)
+                                <li><strong>{{$k->nama}} :</strong> {{$k->keterangan}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <div class="footer-contact-info">
-                <h4>Kontak Kami</h4>
-                <ul>
-                    @foreach($kontak as $k)
-                    <li><strong>{{$k->nama}} :</strong> {{$k->keterangan}}</li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-            <div class="footer-contact-info">
-                <h4>Working Hours</h4>
-                <ul>
-                    <li><strong>Senin - Rabu :</strong> 9 pagi - 5 sore</li>
-                    <li><strong>Kamis - Jum'at :</strong> 1 siang to 8 malam</li>
-                    <li><strong>Sabtu dan Minggu :</strong> Closed</li>
-                </ul>
-            </div>
-        </div>
+        <div class="clearfix"></div>
+        
     </div>
 </div>
