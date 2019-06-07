@@ -21,6 +21,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard/pengaturan', 'PengaturanController@index')->middleware('auth');
+Route::delete('dashboard/pesan/delete', 'DashboardController@destroy')->name('pesan.delete');
 //berita route crud
 Route::get('/dashboard/berita','BeritaController@index')->middleware('auth');
 Route::post('/dashboard/berita/store', 'BeritaController@store')->name('berita.store');

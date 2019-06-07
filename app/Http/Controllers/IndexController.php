@@ -11,6 +11,7 @@ use App\Partner;
 use App\Portofolio;
 use App\Service;
 use App\Tentang;
+use App\Visits;
 
 class IndexController extends Controller
 {

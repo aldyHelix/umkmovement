@@ -49,8 +49,12 @@
                                 <td><img src="{{asset('imagesupload/berita/' .$ber->foto_filename)}}" class="img-responsive" alt="..." style="max-height: 100px; max-width:200px; width: expression(this.width > 200 ? 200: true);"></td>
                                 <td>
                                     <div class="btn-group">
+                                    <div class="col-sm-2">
                                         <a data-toggle="modal" data-target="#modal-berita-edit" data-id="{{$ber->id}}" data-nama="{{$ber->nama_berita}}" data-deskripsi="{{$ber->isi_berita}}" data-tgl="{{$ber->tgl_berita}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        </div>
+                                        <div class="col-sm-2">
                                         <a data-toggle="modal" data-target="#modal-berita-hapus" data-id="{{$ber->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

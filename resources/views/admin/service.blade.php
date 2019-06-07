@@ -50,7 +50,7 @@
                                 <td>{{$ser->tagline}}</td>
                                 <td>Rp {{number_format($ser->range_1, 0, "." , ".")}}</td>
                                 <td>Rp {{number_format($ser->range_2, 0, "." , ".")}}</td>
-                                <td>{{$ser->deskripsi}}</td>
+                                <td>{{Str::words($ser->deskripsi, $words = 10, $end = '...')}}</td>
                                 <td>{{$ser->persentase}} %</td>
                                 <td>
                                     <div class="btn-group">

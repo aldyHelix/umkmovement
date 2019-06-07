@@ -25,27 +25,6 @@ class DatabaseSeeder extends Seeder
             'deskripsi' => 'Kami siap bekerja demi anda!'
         ]);
 
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Minggu',
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Senin',
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Selasa',
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Rabu',
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Kamis',
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => "Jum'at",
-        ]);
-        DB::table('jamkerjas')->insert([
-            'hari' => 'Sabtu',
-        ]);
         DB::table('kontaks')->insert([
             'nama' => 'Email',
             'keterangan' => 'umkmovement@gmail.com',

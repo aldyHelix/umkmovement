@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateJamkerjasTable extends Migration
+class CreateVisitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +13,10 @@ class CreateJamkerjasTable extends Migration
      */
     public function up()
     {
-        Schema::create('jamkerjas', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('hari');
-            $table->time('mulai')->nullable();
-            $table->time('selesai')->nullable();
-            $table->boolean('is_checked')->default(0);
+            $table->string('country')->nullable();
+            $table->string('ip')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateJamkerjasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jamkerjas');
+        Schema::dropIfExists('visits');
     }
 }

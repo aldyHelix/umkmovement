@@ -44,7 +44,7 @@
                             @foreach($portofolio as $p)
                             <tr>
                                 <td>{{$p->nama_portofolio}}</td>
-                                <td>{{$p->deskripsi_portofolio}}</td>
+                                <td>{{Str::words($p->deskripsi_portofolio, $words = 10, $end = '...')}}</td>
                                 <td>{{date('d-m-Y', strtotime($p->tgl_selesai))}}</td>
                                 <td>
                                     <img src="{{asset('imagesupload/portofolio/' .$p->foto_portofolio)}}" class="img-responsive" alt="..." style="max-height: 100px; max-width:200px; width: expression(this.width > 200 ? 200: true);">
@@ -54,8 +54,12 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
+                                    <div class="col-sm-2">
                                         <a data-toggle="modal" data-target="#modal-portofolio-edit" data-id="{{$p->id}}" data-nama="{{$p->nama_portofolio}}" data-deskripsi="{{$p->deskripsi_portofolio}}" data-tgl="{{$p->tgl_selesai}}" data-status="{{$p->is_done}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        </div>
+                                        <div class="col-sm-2">
                                         <a data-toggle="modal" data-target="#modal-portofolio-hapus" data-id="{{$p->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
