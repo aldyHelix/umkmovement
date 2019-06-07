@@ -8,7 +8,6 @@ use App\Kontak;
 use App\Partner;
 use App\Tentang;
 use App\User;
-use App\Jamkerja;
 use Carbon\Carbon;
 use Image;
 use File;
@@ -117,8 +116,7 @@ class PengaturanController extends Controller
         $tentang = Tentang::first();
         $partner = Partner::all();
         $kontak = Kontak::all();
-        $jamker = Jamkerja::all();
-        return view('admin/pengaturan', compact('kontak','partner','tentang','jamker','countberita'));
+        return view('admin/pengaturan', compact('kontak','partner','tentang','countberita'));
     }
     public function ubahPassword(Request $request)
     {
