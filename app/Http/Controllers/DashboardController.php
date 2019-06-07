@@ -35,7 +35,7 @@ class DashboardController extends Controller
         $hasilkerja = (($hasilpembagi)*100);
         $countpartner = Partner::all()->count();
         $pesan = Pesanmasuk::orderBy('waktu_masuk', 'desc')->paginate(10);
-        return view('admin/dashboard', compact('visitirs','pesan','countberita','hasilkerja','countpartner'));
+        return view('admin/dashboard', compact('visitors','pesan','countberita','hasilkerja','countpartner'));
     }
 
     /**
