@@ -33,7 +33,10 @@ Route::delete('/dashboard/berita/delete', 'BeritaController@destroy')->name('ber
     Route::delete('/dashboard/portofolio/delete', 'PortofolioController@destroy')->name('portofolio.destroy');
 //service route crud
 Route::get('/dashboard/service', 'ServiceController@index')->middleware('auth');
-
+Route::get( '/dashboard/service/show', 'ServiceController@show');
+Route::post('/dashboard/service/store', 'ServiceController@store')->name('service.store');
+Route::post('/dashboard/service/update', 'ServiceController@update')->name('service.update');
+Route::delete('/dashboard/service/delete', 'ServiceController@destroy')->name('service.destroy');
 
 Route::resource('dashboard','DashboardController')->middleware('auth');
 
