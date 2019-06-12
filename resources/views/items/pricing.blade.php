@@ -11,9 +11,10 @@
                  </div>
              </div>
          </div>
+
          <div class="row">
-         @foreach($service as $ser)
              <div class="pricing">
+                 @foreach($service as $ser)
                  <div class="col-md-12">
                      <div class="pricing-table">
                          <div class="plan-name" style="background: yellow;">
@@ -34,42 +35,43 @@
                              </ul>
                          </div>
                          <div class="plan-signup">
-                             <a href="#price-modal-{{$ser->id}}" data-toggle="modal"  class="btn-system btn-small">Read more</a>
+                             <a href="#price-modal-{{$ser->id}}" data-toggle="modal" class="btn-system btn-small">Read more</a>
                          </div>
                      </div>
                  </div>
+                @endforeach 
              </div>
-        @endforeach     
          </div>
+         
      </div>
  </div>
  <!-- End Pricing Table Section -->
  <!-- Start Portfolio Modal Section -->
-@foreach($service as $ser)
-     <div class="section-modal modal fade" id="price-modal-{{$ser->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-         <div class="modal-content">
-             <div class="close-modal" data-dismiss="modal">
-                 <div class="lr">
-                     <div class="rl">
-                     </div>
+ @foreach($service as $ser)
+ <div class="section-modal modal fade" id="price-modal-{{$ser->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-content">
+         <div class="close-modal" data-dismiss="modal">
+             <div class="lr">
+                 <div class="rl">
                  </div>
-             </div>
-
-             <div class="container">
-                 <div class="row">
-                     <div class="section-title text-center">
-                         <h3>{{$ser->nama_service}} Details</h3>
-                         <p>{{$ser->tagline}}</p>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-6">
-                         <p>{{$ser->deskripsi}}</p> 
-                     </div>
-
-                 </div><!-- /.row -->
              </div>
          </div>
+
+         <div class="container">
+             <div class="row">
+                 <div class="section-title text-center">
+                     <h3>{{$ser->nama_service}} Details</h3>
+                     <p>{{$ser->tagline}}</p>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-6">
+                     <p>{{$ser->deskripsi}}</p>
+                 </div>
+
+             </div><!-- /.row -->
+         </div>
      </div>
-@endforeach
-     <!-- End Portfolio Modal Section -->
+ </div>
+ @endforeach
+ <!-- End Portfolio Modal Section -->
