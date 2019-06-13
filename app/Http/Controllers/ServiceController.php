@@ -39,7 +39,7 @@ class ServiceController extends Controller
         
         Service::create([
             'nama_service' => $request->nama_layanan,
-            'tagline' => $request->tag_line,
+            'tagline' => $request->tagline,
             'range_1' => $request->range_1,
             'range_2' => $request->range_2,
             'fitur_1' => $request->fitur_1,
@@ -88,7 +88,7 @@ class ServiceController extends Controller
     {
         Service::findOrFail($request->id)->update([
             'nama_service' => $request->nama_layanan,
-            'tagline' => $request->tag_line,
+            'tagline' => $request->tagline,
             'range_1' => $request->range_1,
             'range_2' => $request->range_2,
             'fitur_1' => $request->fitur_1,

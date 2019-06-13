@@ -43,17 +43,16 @@
                             @foreach($berita as $ber)
                             <tr>
                                 <td>{{$ber->nama_berita}}</td>
-                                <td>{{$ber->isi_berita}}
-                                </td>
+                                <td>{{Str::words($ber->isi_berita, $words = 10, $end = '...')}}</td>
                                 <td>{{date('d-m-Y', strtotime($ber->tgl_berita))}}</td>
                                 <td><img src="{{asset('imagesupload/berita/' .$ber->foto_filename)}}" class="img-responsive" alt="..." style="max-height: 100px; max-width:200px; width: expression(this.width > 200 ? 200: true);"></td>
                                 <td>
                                     <div class="btn-group">
-                                    <div class="col-sm-2">
-                                        <a data-toggle="modal" data-target="#modal-berita-edit" data-id="{{$ber->id}}" data-nama="{{$ber->nama_berita}}" data-deskripsi="{{$ber->isi_berita}}" data-tgl="{{$ber->tgl_berita}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <div class="col-sm-2">
+                                            <a data-toggle="modal" data-target="#modal-berita-edit-{{$ber->id}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="col-sm-2">
-                                        <a data-toggle="modal" data-target="#modal-berita-hapus" data-id="{{$ber->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                            <a data-toggle="modal" data-target="#modal-berita-hapus" data-id="{{$ber->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -84,25 +83,25 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Judul</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita">
+                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="isi berita" name="isi_berita"></textarea>
+                                    <textarea type="text" class="form-control" placeholder="isi berita" name="isi_berita" id="ckeditor" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tanggal Berita</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <label for="exampleInputFile">Upload Gambar</label>
-                                    <input type="file" id="exampleInputFile" name="image">
+                                    <input type="file" id="exampleInputFile" name="image" required>
                                     <p class="help-block">Maksimal ukuran file 1 Mb, maksimal ukuran 250 pixel x 250 pixel</p>
                                 </div>
 
@@ -122,7 +121,8 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-berita-edit">
+    @foreach($berita as $ber)
+    <div class="modal fade" id="modal-berita-edit-{{$ber->id}}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,23 +134,23 @@
                     <form class="form-horizontal" action="{{route('berita.update')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
-                            <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="id" id="id" value="{{$ber->id}}">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Judul</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita" id="nama" value="">
+                                    <input type="text" class="form-control" placeholder="Masukkan Judul" name="nama_berita" id="nama" value="{{$ber->nama_berita}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita" id="deskripsi" value=""></textarea>
+                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita" id="ckeditor2" required>{!! $ber->isi_berita !!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tanggal Berita</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita" value="">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_berita" value="{{$ber->tgl_berita}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -175,6 +175,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    @endforeach
     <!-- /.modal -->
     <div class="modal modal-warning fade" id="modal-berita-hapus">
         <div class="modal-dialog">

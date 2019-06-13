@@ -37,7 +37,6 @@
                                 <th>Tagline</th>
                                 <th>Harga dari</th>
                                 <th>Harga Sampai</th>
-                                <th>Deskripsi</th>
                                 <th>% Skill</th>
                                 <th>Aksi</th>
                             </tr>
@@ -50,15 +49,14 @@
                                 <td>{{$ser->tagline}}</td>
                                 <td>Rp {{number_format($ser->range_1, 0, "." , ".")}}</td>
                                 <td>Rp {{number_format($ser->range_2, 0, "." , ".")}}</td>
-                                <td>{{Str::words($ser->deskripsi, $words = 10, $end = '...')}}</td>
                                 <td>{{$ser->persentase}} %</td>
                                 <td>
                                     <div class="btn-group">
                                         <div class="col-sm-2">
-                                            <a data-toggle="modal" href="#"  data-target="#modal-service-info-{{$ser->id}}" class="btn btn-info btn-sm"><i class="fa fa-book"></i></a>
+                                            <a data-toggle="modal" href="#" data-target="#modal-service-info-{{$ser->id}}" class="btn btn-info btn-sm"><i class="fa fa-book"></i></a>
                                         </div>
                                         <div class="col-sm-2">
-                                            <a data-toggle="modal" data-target="#modal-service-edit" data-id="{{$ser->id}}" data-nama="{{$ser->nama_service}}" data-tagline="{{$ser->tagline}}" data-range1="{{$ser->range_2}}" data-range2="{{$ser->range_2}}" data-fitur1="{{$ser->fitur_1}}" data-fitur2="{{$ser->fitur_2}}" data-fitur3="{{$ser->fitur_3}}" data-fitur4="{{$ser->fitur_4}}" data-fitur5="{{$ser->fitur_5}}" data-persentase="{{$ser->persentase}}" data-deskripsi="{{$ser->deskripsi}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                            <a data-toggle="modal" href="#" data-target="#modal-service-edit-{{$ser->id}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="col-sm-2">
                                             <a data-toggle="modal" data-target="#modal-service-hapus" data-id="{{$ser->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -92,67 +90,67 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Nama Layanan</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama Layanan" name="nama_layanan">
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Layanan" name="nama_layanan" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tagline</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Tagline" name="tagline">
+                                    <input type="text" class="form-control" placeholder="Masukkan Tagline" name="tagline" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Harga Mulai</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Harga awal tanpa (.) titik" name="range_1">
+                                    <input type="text" class="form-control" placeholder="Masukkan Harga awal tanpa (.) titik" name="range_1" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Harga Maksimal</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Harga maksimal tanpa (.) titik" name="range_2">
+                                    <input type="text" class="form-control" placeholder="Masukkan Harga maksimal tanpa (.) titik" name="range_2" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 1</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 1" name="fitur_1">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 1" name="fitur_1" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 2</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 2" name="fitur_2">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 2" name="fitur_2" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 3</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 3" name="fitur_3">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 3" name="fitur_3" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 4</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 4" name="fitur_4">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 4" name="fitur_4" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 5</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 5" name="fitur_5">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 5" name="fitur_5" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Persentase Skill</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="masukkan persentase skill" name="persentase">
+                                    <input type="text" class="form-control" placeholder="masukkan persentase skill" name="persentase" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Pilih Logo</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" style="width: 100%;" name="logo_name">
+                                    <select class="form-control select2" style="width: 100%;" name="logo_name" required>
                                         <option selected="selected" value="camera">Kamera</option>
                                         <option value="pencil-square-o">Editing</option>
                                         <option value="newspaper-o">Newspaper</option>
@@ -167,7 +165,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi"></textarea>
+                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -185,7 +183,8 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-service-edit">
+    @foreach($service as $ser)
+    <div class="modal fade" id="modal-service-edit-{{$ser->id}}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -198,71 +197,71 @@
                         @method('POST')
                         @csrf
                         <div class="box-body">
-                            <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="id" id="id" value="{{$ser->id}}">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Nama Layanan</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama Layanan" name="nama_layanan" id="nama_layanan" value="">
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Layanan" name="nama_layanan" id="nama_layanan" value="{{$ser->nama_service}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tagline</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Tagline" name="tagline" id="tagline" value="">
+                                    <input type="text" class="form-control" placeholder="Masukkan Tagline" name="tagline" id="tagline" value="{{$ser->tagline}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Harga Mulai</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Harga awal tanpa (.) titik" name="range_1" id="range1" value="">
+                                    <input type="text" class="form-control" placeholder="Masukkan Harga awal tanpa (.) titik" name="range_1" id="range1" value="{{$ser->range_1}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Harga Maksimal</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Harga maksimal tanpa (.) titik" name="range_2" id="range2" value="">
+                                    <input type="text" class="form-control" placeholder="Masukkan Harga maksimal tanpa (.) titik" name="range_2" id="range2" value="{{$ser->range_2}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 1</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 1" name="fitur_1" id="fitur1" value="">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 1" name="fitur_1" id="fitur1" value="{{$ser->fitur_1}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 2</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 2" name="fitur_2" id="fitur2" value="">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 2" name="fitur_2" id="fitur2" value="{{$ser->fitur_2}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 3</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 3" name="fitur_3" id="fitur3" value="">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 3" name="fitur_3" id="fitur3" value="{{$ser->fitur_3}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 4</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 4" name="fitur_4" id="fitur4" value="">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 4" name="fitur_4" id="fitur4" value="{{$ser->fitur_4}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Layanan 5</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Fitur Layanan 5" name="fitur_5" id="fitur5" value="">
+                                    <input type="text" class="form-control" placeholder="Fitur Layanan 5" name="fitur_5" id="fitur5" value="{{$ser->fitur_5}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Persentase Skill</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="masukkan persentase skill" name="persentase" id="persentase" value="">
+                                    <input type="text" class="form-control" placeholder="masukkan persentase skill" name="persentase" id="persentase" value="{{$ser->persentase}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Pilih Logo</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" style="width: 100%;" name="logo_name">
+                                    <select class="form-control select2" style="width: 100%;" name="logo_name" required>
                                         <option selected="selected" value="camera">Kamera</option>
                                         <option value="pencil">Editing</option>
                                         <option value="newspaper-o">Newspaper</option>
@@ -275,7 +274,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="deskripsi" value=""></textarea>
+                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor2" required>{!! $ser->deskripsi !!}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -292,6 +291,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    @endforeach
     <!-- /.modal -->
     <!-- /.modal -->
     <div class="modal modal-warning fade" id="modal-service-hapus">
@@ -340,11 +340,12 @@
                             </dl>
                             <dl class="dl-horizontal">
                                 <dt>Persentase skill</dt>
-                                <dd><div class="progress">
-                                    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{$ser->persentase}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$ser->persentase}}%">
-                                    <span class="sr-only">Skill pengerjaan sampai dengan {{$ser->persentase}}%</span>
+                                <dd>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="{{$ser->persentase}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$ser->persentase}}%">
+                                            <span class="sr-only">Skill pengerjaan sampai dengan {{$ser->persentase}}%</span>
+                                        </div>
                                     </div>
-                                </div>
                                 </dd>
                             </dl>
                         </div>
@@ -354,13 +355,16 @@
                             <dl class="dl-horizontal">
                                 <dt>Fitur pengerjaan</dt>
                                 <dd>
-                                <li>{{$ser->fitur_1}}</li>
-                                <li>{{$ser->fitur_2}}</li>
-                                <li>{{$ser->fitur_3}}</li>
-                                <li>{{$ser->fitur_4}}</li>
-                                <li>{{$ser->fitur_5}}</li></dd>
+                                    <li>{{$ser->fitur_1}}</li>
+                                    <li>{{$ser->fitur_2}}</li>
+                                    <li>{{$ser->fitur_3}}</li>
+                                    <li>{{$ser->fitur_4}}</li>
+                                    <li>{{$ser->fitur_5}}</li>
+                                </dd>
                                 <dt>Deskripsi Layanan</dt>
-                                <dd><p>{{$ser->deskripsi}}</p></dd>
+                                <dd>
+                                    <p>{!! $ser->deskripsi !!}</p>
+                                </dd>
                             </dl>
                         </div>
                     </div>

@@ -50,11 +50,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <img src="{{asset('imagesupload/portofolio/' .$p->foto_portofolio)}}" class="img-responsive" alt="...">
                     </div>
                     <div class="col-md-6">
-                        <p>{{$p->deskripsi_portofolio}}</p>
+                        <p>{!! $p->deskripsi_portofolio !!}</p>
                         <p>{{date('d-m-Y', strtotime($p->tgl_selesai))}}</p>
                     </div>
                 </div><!-- /.row -->  

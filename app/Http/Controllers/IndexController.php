@@ -39,18 +39,21 @@ class IndexController extends Controller
         $visitors = Visits::all()->count();
         $kontak = Kontak::all();
         $portofolio = Portofolio::limit(6)
+        ->where('is_done', 1)
         ->orderBy('created_at', 'desc')
         ->get();
         $berita = Berita::limit(6)
         ->orderBy('tgl_berita','desc')
         ->get();
+        $countberita = Berita::all()->count();
         $partner = Partner::all();
+        $countpartner = Partner::all()->count();
         $tentang = Tentang::first();
         $hasilkerjaselesai = Portofolio::all()->where('is_done', 1)->count();
         $hasilkerja = Portofolio::all()->count();
         $countinbox = Pesanmasuk::all()->count();
         $service = Service::limit(6)->get();
-        return view('index', compact('visitors','kontak','portofolio','berita','partner','tentang','hasilkerjaselesai','hasilkerja','countinbox','service'));
+        return view('index', compact('visitors','kontak','portofolio','berita','partner','tentang','hasilkerjaselesai','hasilkerja','countinbox','service','countpartner','countberita'));
     }
     public function create(){
         return index();

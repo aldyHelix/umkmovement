@@ -33,7 +33,6 @@
                         <thead>
                             <tr>
                                 <th>Nama Portofolio</th>
-                                <th>Deskripsi Portofolio</th>
                                 <th>Tgl Selesai</th>
                                 <th>Foto Portofolio</th>
                                 <th>Status</th>
@@ -44,7 +43,6 @@
                             @foreach($portofolio as $p)
                             <tr>
                                 <td>{{$p->nama_portofolio}}</td>
-                                <td>{{Str::words($p->deskripsi_portofolio, $words = 10, $end = '...')}}</td>
                                 <td>{{date('d-m-Y', strtotime($p->tgl_selesai))}}</td>
                                 <td>
                                     <img src="{{asset('imagesupload/portofolio/' .$p->foto_portofolio)}}" class="img-responsive" alt="..." style="max-height: 100px; max-width:200px; width: expression(this.width > 200 ? 200: true);">
@@ -54,11 +52,11 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                    <div class="col-sm-2">
-                                        <a data-toggle="modal" data-target="#modal-portofolio-edit" data-id="{{$p->id}}" data-nama="{{$p->nama_portofolio}}" data-deskripsi="{{$p->deskripsi_portofolio}}" data-tgl="{{$p->tgl_selesai}}" data-status="{{$p->is_done}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <div class="col-sm-2">
+                                            <a data-toggle="modal" data-target="#modal-portofolio-edit-{{$p->id}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                                         </div>
                                         <div class="col-sm-2">
-                                        <a data-toggle="modal" data-target="#modal-portofolio-hapus" data-id="{{$p->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                            <a data-toggle="modal" data-target="#modal-portofolio-hapus" data-id="{{$p->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -89,25 +87,25 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Nama Portofolio</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama Portofolio" name="nama_portofolio">
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Portofolio" name="nama_portofolio" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="deskripsi_portofolio"></textarea>
+                                    <textarea class="form-control" placeholder="deskripsi" id="ckeditor" name="deskripsi_portofolio" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tanggal selesai</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_selesai">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_selesai" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Status</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" style="width: 100%;" name="is_done">
+                                    <select class="form-control select2" style="width: 100%;" name="is_done" required>
                                         <option selected="selected" value="1">Selesai</option>
                                         <option value="0">Pending</option>
                                     </select>
@@ -116,7 +114,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <label for="exampleInputFile">Upload Gambar</label>
-                                    <input type="file" id="exampleInputFile" name="image">
+                                    <input type="file" id="exampleInputFile" name="image" required>
                                     <p class="help-block">Maksimal ukuran file 1 Mb, maksimal ukuran 250 pixel x 250 pixel</p>
                                 </div>
 
@@ -136,7 +134,8 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <div class="modal fade" id="modal-portofolio-edit">
+    @foreach($portofolio as $p)
+    <div class="modal fade" id="modal-portofolio-edit-{{$p->id}}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,31 +147,36 @@
                     <form class="form-horizontal" action="{{route('portofolio.update')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
-                            <input type="hidden" name="id" id="id" value="">
+                            <input type="hidden" name="id" id="id" value="{{$p->id}}">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Nama Portofolio</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama Portofolio" name="nama_portofolio" id="nama">
+                                    <input type="text" class="form-control" placeholder="Masukkan Nama Portofolio" name="nama_portofolio" id="nama" value="{{$p->nama_portofolio}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="deskripsi_portofolio" id="deskripsi" value=""></textarea>
+                                    <textarea type="text" class="form-control" placeholder="deskripsi" id="ckeditor2" name="deskripsi_portofolio" required>{!! $p->deskripsi_portofolio!!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Tanggal selesai</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_selesai" value="">
+                                    <input type="text" id="datepicker" class="form-control" placeholder="Klik untuk memilih tanggal" name="tgl_selesai" value="{{$p->tgl_selesai}}" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Status</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control select2" style="width: 100%;" name="is_done" id="status" value="">
+                                    <select class="form-control select2" style="width: 100%;" name="is_done" id="status" required>
+                                        @if($p->is_done == 1)
                                         <option selected="selected" value="1">Selesai</option>
                                         <option value="0">Pending</option>
+                                        @else
+                                        <option value="1">Selesai</option>
+                                        <option selected="selected" value="0">Pending</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -198,6 +202,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    @endforeach
     <!-- /.modal -->
     <div class="modal modal-warning fade" id="modal-portofolio-hapus">
         <div class="modal-dialog">
@@ -226,17 +231,4 @@
     </div>
     <!-- /.modal -->
 </section>
-<script>
-    $(function() {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
-        })
-    })
-</script>
 @endsection

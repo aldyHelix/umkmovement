@@ -18,7 +18,7 @@
                             <div class="welcome-section text-center">
                                 <h4>{{$tentang->headline}}</h4>
                                 <div class="border"></div>
-                                <p>{{$tentang->deskripsi}}</p>
+                                <p>{!!$tentang->deskripsi!!}</p>
                             </div>
                         </div>
                     </div><!-- /.row -->

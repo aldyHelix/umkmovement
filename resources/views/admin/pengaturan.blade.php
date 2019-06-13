@@ -9,7 +9,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <!-- Horizontal Form -->
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Keterangan</label>
                             <div class="col-sm-10">
-                                <textarea type="text" class="form-control" placeholder="Keterangan" name="deskripsi" required>{{$tentang->deskripsi}}</textarea>
+                                <textarea type="text" class="form-control" id="ckeditor" placeholder="Keterangan" name="deskripsi" required>{!! $tentang->deskripsi !!}</textarea>
                             </div>
                         </div>
                     </div>
@@ -59,6 +59,8 @@
             </div>
             <!-- /.box -->
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -172,19 +174,19 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-4 control-label">Password Lama</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" placeholder="Password Lama" name="password">
+                                <input type="password" class="form-control" placeholder="Password Lama" name="password" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-4 control-label">Password Baru</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password Baru" name="newpass1">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password Baru" name="newpass1" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-4 control-label">Ulangi Password Baru</label>
                             <div class="col-sm-8">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Ulangi Password Baru" name="newpass2">
+                                <input type="password" class="form-control" id="inputPassword3" placeholder="Ulangi Password Baru" name="newpass2" required>
                             </div>
                         </div>
                     </div>
@@ -216,7 +218,7 @@
                             <div class="form-group">
                                 <div class="col-sm-8">
                                     <label for="exampleInputFile">Upload Gambar</label>
-                                    <input type="file" id="exampleInputFile" name="image">
+                                    <input type="file" id="exampleInputFile" name="image" required>
                                     <p class="text-danger">{{ $errors->first('image') }}</p>
                                     <p class="help-block">Maksimal ukuran file 1 Mb, maksimal ukuran 250 pixel x 250 pixel</p>
                                 </div>
@@ -252,13 +254,13 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nama Kontak</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Headline" name="nama">
+                                    <input type="text" class="form-control" placeholder="Headline" name="nama" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Keterangan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan" required>
                                 </div>
                             </div>
                         </div>
@@ -292,13 +294,13 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nama Kontak</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Nama Kontak" name="nama" value="" id="nama">
+                                    <input type="text" class="form-control" placeholder="Nama Kontak" name="nama" value="" id="nama" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Keterangan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan" value="" id="keterangan">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan" value="" id="keterangan" required>
                                 </div>
                             </div>
                         </div>

@@ -6,9 +6,15 @@
 @include('items.aboutus')
 @include('items.ourteam')
 @include('items.pricing')
-@include('items.portofolio')
+@if($hasilkerjaselesai > 0)
+	@include('items.portofolio')
+@endif
+@if($countberita)
 @include('items.news')
+@endif
+@if($countpartner > 0)
 @include('items.clients')
+@endif
 <section id="contact" class="contact">
 	@include('items.contact')
 	@include('items.footer')
