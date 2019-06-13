@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" id="ckeditor" name="deskripsi_portofolio" required></textarea>
+                                    <textarea class="form-control" placeholder="deskripsi" id="ckeditor-add" name="deskripsi_portofolio" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -157,7 +157,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea type="text" class="form-control" placeholder="deskripsi" id="ckeditor2" name="deskripsi_portofolio" required>{!! $p->deskripsi_portofolio!!}</textarea>
+                                    <textarea type="text" class="form-control" placeholder="deskripsi" id="ckeditor-{{$p->id}}" name="deskripsi_portofolio" required>{!! $p->deskripsi_portofolio!!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -231,4 +231,15 @@
     </div>
     <!-- /.modal -->
 </section>
+@endsection
+@section('js')
+<script>
+    CKEDITOR.replace('ckeditor-add');
+</script>
+
+@foreach($portofolio as $p)
+<script>
+    CKEDITOR.replace('ckeditor-{{$p->id}}');
+</script>
+@endforeach
 @endsection

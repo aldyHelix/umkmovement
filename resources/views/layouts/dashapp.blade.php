@@ -100,8 +100,10 @@
     <script src="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     @section('js')
+    @yield('js')
 
     @show
+
     <script>
         CKEDITOR.replace('ckeditor');
         CKEDITOR.replace('ckeditor2');

@@ -165,7 +165,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor" required></textarea>
+                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor-add" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -263,18 +263,20 @@
                                 <div class="col-sm-8">
                                     <select class="form-control select2" style="width: 100%;" name="logo_name" required>
                                         <option selected="selected" value="camera">Kamera</option>
-                                        <option value="pencil">Editing</option>
+                                        <option value="pencil-square-o">Editing</option>
                                         <option value="newspaper-o">Newspaper</option>
                                         <option value="handshake-o">Kerjasama</option>
                                         <option value="money">Keuangan</option>
                                         <option value="globe">Global</option>
+                                        <option value="magic">Magic</option>
+                                        <option value="gift">Kotak Kado</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor2" required>{!! $ser->deskripsi !!}</textarea>
+                                    <textarea class="form-control" placeholder="isi Deskripsi layanan" name="deskripsi" id="ckeditor-{{$ser->id}}" required>{!! $ser->deskripsi !!}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -380,4 +382,15 @@
     @endforeach
     <!-- /.modal -->
 </section>
+@endsection
+@section('js')
+<script>
+    CKEDITOR.replace('ckeditor-add');
+</script>
+
+@foreach($service as $ser)
+<script>
+    CKEDITOR.replace('ckeditor-{{$ser->id}}');
+</script>
+@endforeach
 @endsection

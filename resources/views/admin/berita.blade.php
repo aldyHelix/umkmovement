@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea type="text" class="form-control" placeholder="isi berita" name="isi_berita" id="ckeditor" required></textarea>
+                                    <textarea type="text" class="form-control" placeholder="isi berita" name="isi_berita" id="berckeditor-add" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -144,7 +144,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">isi Berita</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita" id="ckeditor2" required>{!! $ber->isi_berita !!}</textarea>
+                                    <textarea class="form-control" placeholder="deskripsi" name="isi_berita" id="berckeditor-{{$ber->id}}" required>{!! $ber->isi_berita !!}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -217,4 +217,15 @@
         })
     })
 </script>
+@endsection
+@section('js')
+<script>
+    CKEDITOR.replace('berckeditor-add');
+</script>
+
+@foreach($berita as $ber)
+<script>
+    CKEDITOR.replace('berckeditor-{{$ber->id}}');
+</script>
+@endforeach
 @endsection
